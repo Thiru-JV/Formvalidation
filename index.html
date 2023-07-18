@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegisterForm</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="continer">
+        <form action="" id="form">
+            <h1>Register</h1>
+            <div class="form-grp">
+                <label>Username</label>
+                <input type="text" id="username">
+                <div id="error">error</div>
+            </div>
+            <div class="form-grp">
+                <label>Email</label>
+                <input type="email" id="email">
+                <div id="error">error</div>
+            </div>
+            <div class="form-grp">
+                <label>Password</label>
+                <input type="password" id="password">
+                <div id="error">error</div>
+            </div>
+            <div class="form-grp">
+                <label>ConfirmPass</label>
+                <input type="password" id="conPass">
+                <div id="error">error</div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        
+
+    </div>
+    <script>
+        const form = document.getElementById("form")
+        const username = document.getElementById("username")
+        const email = document.getElementById("email")
+        const password = document.getElementById("password")
+        const conPass = document.getElementById("conPass")
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            checkInput()
+            
+        })
+        function checkInput() {
+            const usernameVal = username.value.trim()
+            const emailVal = email.value.trim()
+            const passwordVal = password.value.trim()
+            const conPassVal = conPass.value.trim()
+
+            if (usernameVal === '') {
+                errorFn(username, 'Pleas enter the username')
+            }
+            else {
+                sucessFn(username)
+            }
+
+            if (emailVal === '') {
+                errorFn(email, 'Pleas enter the Email')
+            }
+            else if (!validEmail(emailVal)) {
+
+                errorFn(email, 'Pleas enter valid email')
+            }
+            else {
+                sucessFn(email)
+            }
+
+            if (passwordVal === '') {
+                errorFn(password, 'Pleas enter the password')
+            }
+            else if (passwordVal.length < 8){
+                errorFn(password, 'password must be 8 character')
+            }
+            else {
+                sucessFn(password)
+            }
+
+            if (conPassVal === '') {
+                errorFn(conPass, 'Pleas enter the password')
+            }
+            else if (passwordVal !== conPassVal) {
+                errorFn(conPass, 'Password not match')
+
+            }
+            else {
+                sucessFn(conPass)
+            }
+        }
+
+
+
+        function errorFn(element, message) {
+            const inputgroup = element.parentElement;
+            const errorElement = inputgroup.querySelector("#error")
+            errorElement.innerText = message;
+            inputgroup.classList.add("error")
+            inputgroup.classList.remove("success")
+        }
+        function sucessFn(element) {
+            const inputgroup = element.parentElement;
+            const errorElement = inputgroup.querySelector("#error")
+            errorElement.innerText = '';
+            inputgroup.classList.add("success")
+            inputgroup.classList.remove("error")
+        }
+        const validEmail = (email) => {
+            return String(email)
+                .toLowerCase()
+                .match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                );
+        };
+
+        
+    </script>
+
+</body>
+
+</html>

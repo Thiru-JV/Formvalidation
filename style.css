@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-image: url(./bacground\ img.jpg);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.continer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: rgb(59 51 51 / 58%);
+    color: #fff;
+    width: 400px;
+    padding: 10px;
+
+}
+
+.form-grp {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 6px;
+    background-color: rgba(0, 0, 0, 0.647);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.form-grp div {
+    visibility: hidden;
+
+}
+
+.form-grp input {
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.form-grp.error div {
+    visibility: visible;
+    color: red;
+}
+
+.form-grp.error input {
+    border: 1px solid rgb(255, 0, 0);
+}
+
+.form-grp.success input {
+    border: 1px solid rgb(0, 255, 0);
+}
+
